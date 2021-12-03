@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
 <!--    <link rel="stylesheet" href="style.css">-->
     <title>Title</title>
-    <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+   <style>
         *{
             font-family: 'Montserrat', sans-serif;
             margin: 0;
@@ -14,7 +16,8 @@
 
         body{
             min-height: 100vh;
-            background: aqua;
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
             display: flex
             flex-direction: column;
             align-items: center;
@@ -59,14 +62,15 @@
 <body>
     <center><form action="/todo" method="post">
         <br><br><h1>Add Task</h1><br>
+
         <b><label>Task: </label></b><input type="text" name="task" required><br><br>
         <b><label>Assignee: </label></b><input type="text" name="assignee" required><br><br>
         <b><label>Reporter: </label></b><input type="text" name="reporter" required><br><br>
         <b><label>Days to complete: </label></b><input type="text" name="days" required><br><br>
 
-        <button type="submit">ADD</button><br><br>
+        <button type="submit" class="ui secondary button">ADD</button><br>
     </form></center>
-    <center><table class="content-table" border="1">
+    <center><table class="ui fixed single line celled table" border="1">
         <b><tr>
             <th>Sno</th>
             <th>Task</th>
