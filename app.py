@@ -7,7 +7,11 @@ app = Flask(__name__)
 """ MySQL connectivity """
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
+<<<<<<< HEAD
 app.config["MYSQL_PASSWORD"] = "Padma2000!"
+=======
+app.config["MYSQL_PASSWORD"] = ""
+>>>>>>> refs/remotes/origin/master
 app.config["MYSQL_DB"] = "todo"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 mysql = MySQL(app)
@@ -74,4 +78,8 @@ def delete_task(sno):
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(debug=True)
+=======
+    app.run(debug=True)
+>>>>>>> refs/remotes/origin/master
