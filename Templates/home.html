@@ -14,7 +14,7 @@
 
         body{
             min-height: 100vh;
-            background: linear-gradient(65deg, rgb(181,41,231), rgb(216, 43, 43));
+            background: aqua;
             display: flex
             flex-direction: column;
             align-items: center;
@@ -85,8 +85,8 @@
                 <td>{{data.reporter}}</td>
                 <td>{{data.days}}</td>
                 <td>{{data.status}}</td>
-                <td><a onclick="return confirm('Are you sure you are done with the task');" href = "{{url_for('changeStatus', sno = data.sno)}}">Done</a></td>
-                <td><a onclick="return confirm('Are you sure you want to delete the task');" href = "{{url_for('deleteTask', sno = data.sno)}}">Delete</a></td><br>
+                <td><a onclick="return confirm('Are you sure you are done with the task');" href = "{{url_for('change_status', sno = data.sno)}}">Done</a></td>
+                <td><a onclick="return confirm('Are you sure you want to delete the task');" href = "{{url_for('delete_task', sno = data.sno)}}">Delete</a></td><br>
             </tr>
         {% endfor %}
     </table></center>
