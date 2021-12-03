@@ -7,11 +7,7 @@ app = Flask(__name__)
 """ MySQL connectivity """
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
-<<<<<<< HEAD
-app.config["MYSQL_PASSWORD"] = "Padma2000!"
-=======
 app.config["MYSQL_PASSWORD"] = ""
->>>>>>> refs/remotes/origin/master
 app.config["MYSQL_DB"] = "todo"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 mysql = MySQL(app)
@@ -21,7 +17,7 @@ mysql = MySQL(app)
 def home():
     """ Display task details """
     con = mysql.connection.cursor()
-    sql = "SELECT * FROM task"
+    sql = "SELECT * FROM task ORDER BY sno DESC"
     con.execute(sql)
     res = con.fetchall()
     return render_template("home.html", datas=res)
@@ -42,7 +38,7 @@ def add_todo():
         mysql.connection.commit()
         con.close()
     con = mysql.connection.cursor()
-    sql1 = "SELECT * FROM task"
+    sql1 = "SELECT * FROM task ORDER BY sno DESC"
     con.execute(sql1)
     res = con.fetchall()
     con.close()
@@ -56,7 +52,7 @@ def change_status(sno):
     sql = "update task set status='done' where sno=%s"
     con.execute(sql, [sno])
     mysql.connection.commit()
-    sql1 = "SELECT * FROM task"
+    sql1 = "SELECT * FROM task ORDER BY sno DESC"
     con.execute(sql1)
     res = con.fetchall()
     con.close()
@@ -70,7 +66,7 @@ def delete_task(sno):
     sql = "delete from task where sno=%s"
     con.execute(sql, [sno])
     mysql.connection.commit()
-    sql1 = "SELECT * FROM task"
+    sql1 = "SELECT * FROM task ORDER BY sno DESC"
     con.execute(sql1)
     res = con.fetchall()
     con.close()
@@ -78,8 +74,5 @@ def delete_task(sno):
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     app.run(debug=True)
-=======
-    app.run(debug=True)
->>>>>>> refs/remotes/origin/master
+
