@@ -49,27 +49,24 @@
             font-size: 16px;
         }
 
-        .content-table{
-            width: 100%;
-            border-collapse: collapse;
-            border: 1px solid black;
-            margin: 25px 0;
-            min-width: 400px;
-            text-align: center;
+        mark {
+            background-color: black;
+            color: white;
+            font-size: 25px;
         }
     </style>
 </head>
 <body>
     <center><form action="/todo" method="post">
-        <br><br><h1>Add Task</h1><br>
+        <br><br><p><mark>Add Task</mark></p><br>
 
         <b><label>Task: </label></b><input type="text" name="task" required><br><br>
         <b><label>Assignee: </label></b><input type="text" name="assignee" required><br><br>
         <b><label>Reporter: </label></b><input type="text" name="reporter" required><br><br>
         <b><label>Days to complete: </label></b><input type="text" name="days" required><br><br>
-
-        <button type="submit" class="ui secondary button">ADD</button><br>
+        <button type="submit" class="ui secondary button">ADD</button>
     </form></center>
+
     <center><table class="ui fixed single line celled table" border="1">
         <b><tr>
             <th>Sno</th>
