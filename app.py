@@ -4,16 +4,18 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-app.config["MYSQL_HOST"]="localhost"
-app.config["MYSQL_USER"]="root"
-app.config["MYSQL_PASSWORD"]=""
-app.config["MYSQL_DB"]="todo"
-app.config["MYSQL_CURSORCLASS"]="DictCursor"
+""" MySQL connectivity """
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = ""
+app.config["MYSQL_DB"] = "todo"
+app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 mysql = MySQL(app)
 
 
 @app.route("/")
 def home():
+    """ Display task details """
     con = mysql.connection.cursor()
     sql = "SELECT * FROM task"
     con.execute(sql)
@@ -22,7 +24,8 @@ def home():
 
 
 @app.route("/todo", methods=["GET", "POST"])
-def addTodo():
+def add_todo():
+    """ Add todo in the table """
     res = 0
     if request.method == 'POST':
         task = request.form['task']
@@ -42,8 +45,9 @@ def addTodo():
     return render_template("home.html", datas=res)
 
 
-@app.route("/changeStatus/<int:sno>",methods=['GET','POST'])
-def changeStatus(sno):
+@app.route("/changeStatus/<int:sno>", methods=['GET', 'POST'])
+def change_status(sno):
+    """ Change status if done """
     con = mysql.connection.cursor()
     sql = "update task set status='done' where sno=%s"
     con.execute(sql, [sno])
@@ -55,8 +59,9 @@ def changeStatus(sno):
     return render_template("home.html", datas=res)
 
 
-@app.route("/deleteTask/<int:sno>",methods=['GET','POST'])
-def deleteTask(sno):
+@app.route("/deleteTask/<int:sno>", methods=['GET', 'POST'])
+def delete_task(sno):
+    """ Delete task if needed """
     con = mysql.connection.cursor()
     sql = "delete from task where sno=%s"
     con.execute(sql, [sno])
@@ -67,5 +72,6 @@ def deleteTask(sno):
     con.close()
     return render_template("home.html", datas=res)
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     app.run(debug=True)
