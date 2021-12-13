@@ -57,39 +57,43 @@
     </style>
 </head>
 <body>
-    <center><form action="/todo" method="post">
+    <center><form name="add" action="/todo" method="post">
         <br><br><p><mark>Add Task</mark></p><br>
-
         <b><label>Task: </label></b><input type="text" name="task" required><br><br>
         <b><label>Assignee: </label></b><input type="text" name="assignee" required><br><br>
+        <b><label>Assignee email: </label></b><input type="text" name="assignee_email" required><br><br>
         <b><label>Reporter: </label></b><input type="text" name="reporter" required><br><br>
-        <b><label>Days to complete: </label></b><input type="text" name="days" required><br><br>
+        <b><label>Due: </label></b><input type="text" name="due" placeholder="yyyy-mm-dd"required><br><br>
         <button type="submit" class="ui secondary button">ADD</button>
     </form></center>
 
     <center><table class="ui fixed single line celled table" border="1">
         <b><tr>
-            <th>Sno</th>
             <th>Task</th>
             <th>Assignee</th>
+            <th>Assignee Email</th>
             <th>Reporter</th>
-            <th>Days to complete</th>
+            <th>Due</th>
             <th>Status</th>
             <th>Done</th>
             <th>Delete</th><br>
         </tr></b>
         {% for data in datas %}
            <tr>
-                <td>{{data.sno}}</td>
                 <td>{{data.task}}</td>
                 <td>{{data.assignee}}</td>
+                <td>{{data.assignee_email}}</td>
                 <td>{{data.reporter}}</td>
-                <td>{{data.days}}</td>
+                <td>{{data.due}}</td>
                 <td>{{data.status}}</td>
-                <td><a onclick="return confirm('Are you sure you are done with the task');" href = "{{url_for('change_status', sno = data.sno)}}">Done</a></td>
-                <td><a onclick="return confirm('Are you sure you want to delete the task');" href = "{{url_for('delete_task', sno = data.sno)}}">Delete</a></td><br>
+
+                <td><a onclick="return confirm('Are you sure you are done with the task?');" href = "{{url_for('change_status', id = data.id)}}">Done</a></td>
+                <td><a onclick="return confirm('Are you sure you want to delete the task?');" href = "{{url_for('delete_task', id = data.id)}}">Delete</a></td>
+
             </tr>
         {% endfor %}
-    </table></center>
+    </table></center><br><br>
+
+
 </body>
 </html>
